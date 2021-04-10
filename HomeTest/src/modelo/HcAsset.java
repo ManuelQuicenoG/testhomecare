@@ -2,6 +2,9 @@ package modelo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
+import javax.persistence.*;
+
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -44,13 +47,14 @@ public class HcAsset implements Serializable {
 	@Column(name = "pruchase_place")
 	private String pruchasePlace;
 
-	@Column(name = "purchase_date")
+
+	@Column(name="purchase_date")
 	private LocalDate purchaseLocalDate;
 
 	@Column(name = "purchase_price")
 	private double purchasePrice;
 
-	@Column(name = "warranty_date")
+	@Column(name="warranty_date")
 	private LocalDate warrantyLocalDate;
 
 	// bi-directional many-to-one association to HcAssetState

@@ -1,7 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.time.LocalTime;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -37,12 +37,12 @@ public class HcServiceRequest implements Serializable {
 	@Column(name = "service_r_id")
 	private Integer serviceRId;
 
-	@Column(name = "beginning_time")
-	private Time beginningTime;
+	@Column(name="beginning_time")
+	private LocalTime beginningTime;
 
 	private double duration;
 
-	@Column(name = "request_date")
+	@Column(name="request_date")
 	private LocalDate requestLocalDate;
 
 	@Column(name = "service_value")
@@ -80,8 +80,12 @@ public class HcServiceRequest implements Serializable {
 		return hcServiceRState;
 	}
 
-	public Time getBeginningTime() {
+	public LocalTime getBeginningTime() {
 		return this.beginningTime;
+	}
+
+	public void setBeginningTime(LocalTime beginningTime) {
+		this.beginningTime = beginningTime;
 	}
 
 	public double getDuration() {
@@ -124,10 +128,6 @@ public class HcServiceRequest implements Serializable {
 		hcServiceRState.setHcServiceRequest(null);
 
 		return hcServiceRState;
-	}
-
-	public void setBeginningTime(Time beginningTime) {
-		this.beginningTime = beginningTime;
 	}
 
 	public void setDuration(double duration) {

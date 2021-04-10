@@ -6,6 +6,8 @@ import java.util.Set;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -30,6 +32,14 @@ public class HcUserChatroom implements Serializable {
 	@OneToMany(mappedBy = "hcUserChatroom", fetch = FetchType.EAGER)
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcMessage> hcMessages;
+
+	@ManyToOne
+	@JoinColumn(name = "hc_users_user_id", insertable = false, updatable = false)
+	private HcUser hcUser;
+
+	@ManyToOne
+	@JoinColumn(name = "hc_chatrooms_chat_r_id", insertable = false, updatable = false)
+	private HcChatroom hcChatroom;
 
 	public HcUserChatroom() {
 	}

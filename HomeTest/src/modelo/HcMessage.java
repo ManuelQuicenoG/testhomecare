@@ -1,9 +1,10 @@
 package modelo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.*;
-import java.sql.Time;
-import java.util.LocalDate;
 
 
 /**
@@ -24,7 +25,6 @@ public class HcMessage implements Serializable {
 
 	private String content;
 
-	@Temporal(TemporalType.DATE)
 	@Column(name="date_sent")
 	private LocalDate dateSent;
 
@@ -32,7 +32,7 @@ public class HcMessage implements Serializable {
 	private Boolean isSent;
 
 	@Column(name="time_sent")
-	private Time timeSent;
+	private LocalTime timeSent;
 
 	//bi-directional many-to-one association to HcUserChatroom
 	@ManyToOne
@@ -77,11 +77,11 @@ public class HcMessage implements Serializable {
 		this.isSent = isSent;
 	}
 
-	public Time getTimeSent() {
+	public LocalTime getTimeSent() {
 		return this.timeSent;
 	}
 
-	public void setTimeSent(Time timeSent) {
+	public void setTimeSent(LocalTime timeSent) {
 		this.timeSent = timeSent;
 	}
 

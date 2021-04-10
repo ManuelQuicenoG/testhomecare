@@ -34,7 +34,7 @@ public class HcTransportProvider implements Serializable {
 
 	// bi-directional many-to-one association to HcUser
 	@ManyToOne
-	@JoinColumn(name = "hc_users_user_id")
+	@JoinColumn(name="hc_users_user_id", insertable = false, updatable = false)
 	private HcUser hcUser;
 
 	// bi-directional many-to-one association to HcTransportService

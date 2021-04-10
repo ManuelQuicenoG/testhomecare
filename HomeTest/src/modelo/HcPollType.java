@@ -29,10 +29,10 @@ public class HcPollType implements Serializable {
 	@Column(name = "poll_type_id")
 	private Integer pollTypeId;
 
-	@Column(name = "date_creation")
+	@Column(name="date_creation")
 	private LocalDate dateCreation;
 
-	@Column(name = "date_expiry")
+	@Column(name="date_expiry")
 	private LocalDate dateExpiry;
 
 	private String origin;

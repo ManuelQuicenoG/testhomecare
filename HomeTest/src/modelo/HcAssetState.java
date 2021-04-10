@@ -3,6 +3,8 @@ package modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.*;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -24,20 +26,20 @@ public class HcAssetState implements Serializable {
 	@EmbeddedId
 	private HcAssetStatePK id;
 
-	@Column(name = "date_end")
+	@Column(name="date_end")
 	private LocalDate dateEnd;
 
-	@Column(name = "date_start")
+	@Column(name="date_start")
 	private LocalDate dateStart;
 
 	// bi-directional many-to-one association to HcAsset
 	@ManyToOne
-	@JoinColumn(name = "hc_assets_asset_id")
+	@JoinColumn(name="hc_assets_asset_id", insertable = false, updatable = false)
 	private HcAsset hcAsset;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name = "hc_states_state_id")
+	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
 	private HcState hcState;
 
 	public HcAssetState() {

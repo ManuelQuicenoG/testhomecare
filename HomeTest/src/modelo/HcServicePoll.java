@@ -43,12 +43,12 @@ public class HcServicePoll implements Serializable {
 
 	// bi-directional many-to-one association to HcPollType
 	@ManyToOne
-	@JoinColumn(name = "hc_poll_type_poll_type_id")
+	@JoinColumn(name="hc_poll_type_poll_type_id", insertable = false, updatable = false)
 	private HcPollType hcPollType;
 
 	// bi-directional many-to-one association to HcService
 	@ManyToOne
-	@JoinColumn(name = "hc_services_serv_id")
+	@JoinColumn(name="hc_services_serv_id", insertable = false, updatable = false)
 	private HcService hcService;
 
 	// bi-directional many-to-one association to HcServiceQualification

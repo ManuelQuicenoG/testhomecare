@@ -24,20 +24,20 @@ public class HcPropertyState implements Serializable {
 	@EmbeddedId
 	private HcPropertyStatePK id;
 
-	@Column(name = "date_end")
+	@Column(name="date_end")
 	private LocalDate dateEnd;
 
-	@Column(name = "date_start")
+	@Column(name="date_start")
 	private LocalDate dateStart;
 
 	// bi-directional many-to-one association to HcProperty
 	@ManyToOne
-	@JoinColumn(name = "hc_properties_property_id")
+	@JoinColumn(name="hc_properties_property_id", insertable = false, updatable = false)
 	private HcProperty hcProperty;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name = "hc_states_state_id")
+	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
 	private HcState hcState;
 
 	public HcPropertyState() {

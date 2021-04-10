@@ -1,8 +1,10 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
+
+import javax.persistence.*;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -37,11 +39,11 @@ public class HcNew implements Serializable {
 	@Column(name="new_id")
 	private Integer newId;
 
-	@Column(name = "actual_date")
+	@Column(name="actual_date")
 	private LocalDate actualLocalDate;
 
-	@Column(name = "actual_time")
-	private Time actualTime;
+	@Column(name="actual_time")
+	private LocalTime actualTime;
 
 	private String description;
 
@@ -102,8 +104,12 @@ public class HcNew implements Serializable {
 		return this.actualLocalDate;
 	}
 
-	public Time getActualTime() {
+	public LocalTime getActualTime() {
 		return this.actualTime;
+	}
+
+	public void setActualTime(LocalTime actualTime) {
+		this.actualTime = actualTime;
 	}
 
 	public String getDescription() {
@@ -161,10 +167,6 @@ public class HcNew implements Serializable {
 
 	public void setActualLocalDate(LocalDate actualLocalDate) {
 		this.actualLocalDate = actualLocalDate;
-	}
-
-	public void setActualTime(Time actualTime) {
-		this.actualTime = actualTime;
 	}
 
 	public void setDescription(String description) {

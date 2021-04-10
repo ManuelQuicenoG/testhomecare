@@ -29,12 +29,12 @@ public class HcServiceTransRState implements Serializable {
 
 	// bi-directional many-to-one association to HcServiceRequestTran
 	@ManyToOne
-	@JoinColumn(name = "hc_service_request_trans_hc_serv_r_trans_id")
+	@JoinColumn(name="hc_service_request_trans_hc_serv_r_trans_id", insertable = false, updatable = false)
 	private HcServiceRequestTran hcServiceRequestTran;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name = "hc_states_state_id")
+	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
 	private HcState hcState;
 
 	public HcServiceTransRState() {
