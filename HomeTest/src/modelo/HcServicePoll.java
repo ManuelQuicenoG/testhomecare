@@ -1,114 +1,62 @@
 package modelo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * The persistent class for the hc_service_poll database table.
- * 
+ *
  */
 @Entity
-@Table(name="hc_service_poll")
-@NamedQuery(name="HcServicePoll.findAll", query="SELECT h FROM HcServicePoll h")
+@Table(name = "hc_service_poll")
+@NamedQuery(name = "HcServicePoll.findAll", query = "SELECT h FROM HcServicePoll h")
 public class HcServicePoll implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private HcServicePollPK id;
 
-	@Column(name="answer_review")
+	@Column(name = "answer_review")
 	private String answerReview;
 
-	@Column(name="average_qualification")
+	@Column(name = "average_qualification")
 	private BigDecimal averageQualification;
 
-	@Column(name="general_qualification")
+	@Column(name = "general_qualification")
 	private Integer generalQualification;
 
 	private String review;
 
-	//bi-directional many-to-one association to HcPollType
+	// bi-directional many-to-one association to HcPollType
 	@ManyToOne
-	@JoinColumn(name="hc_poll_type_poll_type_id")
+	@JoinColumn(name = "hc_poll_type_poll_type_id")
 	private HcPollType hcPollType;
 
-	//bi-directional many-to-one association to HcService
+	// bi-directional many-to-one association to HcService
 	@ManyToOne
-	@JoinColumn(name="hc_services_serv_id")
+	@JoinColumn(name = "hc_services_serv_id")
 	private HcService hcService;
 
-	//bi-directional many-to-one association to HcServiceQualification
-	@OneToMany(mappedBy="hcServicePoll", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to HcServiceQualification
+	@OneToMany(mappedBy = "hcServicePoll", fetch = FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceQualification> hcServiceQualifications;
 
 	public HcServicePoll() {
-	}
-
-	public HcServicePollPK getId() {
-		return this.id;
-	}
-
-	public void setId(HcServicePollPK id) {
-		this.id = id;
-	}
-
-	public String getAnswerReview() {
-		return this.answerReview;
-	}
-
-	public void setAnswerReview(String answerReview) {
-		this.answerReview = answerReview;
-	}
-
-	public BigDecimal getAverageQualification() {
-		return this.averageQualification;
-	}
-
-	public void setAverageQualification(BigDecimal averageQualification) {
-		this.averageQualification = averageQualification;
-	}
-
-	public Integer getGeneralQualification() {
-		return this.generalQualification;
-	}
-
-	public void setGeneralQualification(Integer generalQualification) {
-		this.generalQualification = generalQualification;
-	}
-
-	public String getReview() {
-		return this.review;
-	}
-
-	public void setReview(String review) {
-		this.review = review;
-	}
-
-	public HcPollType getHcPollType() {
-		return this.hcPollType;
-	}
-
-	public void setHcPollType(HcPollType hcPollType) {
-		this.hcPollType = hcPollType;
-	}
-
-	public HcService getHcService() {
-		return this.hcService;
-	}
-
-	public void setHcService(HcService hcService) {
-		this.hcService = hcService;
-	}
-
-	public Set<HcServiceQualification> getHcServiceQualifications() {
-		return this.hcServiceQualifications;
-	}
-
-	public void setHcServiceQualifications(Set<HcServiceQualification> hcServiceQualifications) {
-		this.hcServiceQualifications = hcServiceQualifications;
 	}
 
 	public HcServiceQualification addHcServiceQualification(HcServiceQualification hcServiceQualification) {
@@ -118,11 +66,75 @@ public class HcServicePoll implements Serializable {
 		return hcServiceQualification;
 	}
 
+	public String getAnswerReview() {
+		return this.answerReview;
+	}
+
+	public BigDecimal getAverageQualification() {
+		return this.averageQualification;
+	}
+
+	public Integer getGeneralQualification() {
+		return this.generalQualification;
+	}
+
+	public HcPollType getHcPollType() {
+		return this.hcPollType;
+	}
+
+	public HcService getHcService() {
+		return this.hcService;
+	}
+
+	public Set<HcServiceQualification> getHcServiceQualifications() {
+		return this.hcServiceQualifications;
+	}
+
+	public HcServicePollPK getId() {
+		return this.id;
+	}
+
+	public String getReview() {
+		return this.review;
+	}
+
 	public HcServiceQualification removeHcServiceQualification(HcServiceQualification hcServiceQualification) {
 		getHcServiceQualifications().remove(hcServiceQualification);
 		hcServiceQualification.setHcServicePoll(null);
 
 		return hcServiceQualification;
+	}
+
+	public void setAnswerReview(String answerReview) {
+		this.answerReview = answerReview;
+	}
+
+	public void setAverageQualification(BigDecimal averageQualification) {
+		this.averageQualification = averageQualification;
+	}
+
+	public void setGeneralQualification(Integer generalQualification) {
+		this.generalQualification = generalQualification;
+	}
+
+	public void setHcPollType(HcPollType hcPollType) {
+		this.hcPollType = hcPollType;
+	}
+
+	public void setHcService(HcService hcService) {
+		this.hcService = hcService;
+	}
+
+	public void setHcServiceQualifications(Set<HcServiceQualification> hcServiceQualifications) {
+		this.hcServiceQualifications = hcServiceQualifications;
+	}
+
+	public void setId(HcServicePollPK id) {
+		this.id = id;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
 	}
 
 }
