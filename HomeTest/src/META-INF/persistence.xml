@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="HomeTest">
+		<class>modelo.HcAssetState</class>
+		<class>modelo.HcAssetStatePK</class>
+		<class>modelo.HcAsset</class>
+		<class>modelo.HcChatroom</class>
+		<class>modelo.HcCity</class>
+		<class>modelo.HcCountry</class>
+		<class>modelo.HcCriteria</class>
+		<class>modelo.HcDepartment</class>
+		<class>modelo.HcEmployee</class>
+		<class>modelo.HcMessage</class>
+		<class>modelo.HcNeighborhood</class>
+		<class>modelo.HcNewState</class>
+		<class>modelo.HcNewStatePK</class>
+		<class>modelo.HcNew</class>
+		<class>modelo.HcOwner</class>
+		<class>modelo.HcPermission</class>
+		<class>modelo.HcPhoto</class>
+		<class>modelo.HcPollType</class>
+		<class>modelo.HcProperty</class>
+		<class>modelo.HcPropertyState</class>
+		<class>modelo.HcPropertyStatePK</class>
+		<class>modelo.HcPropertyType</class>
+		<class>modelo.HcRole</class>
+		<class>modelo.HcServicePoll</class>
+		<class>modelo.HcServicePollPK</class>
+		<class>modelo.HcServiceQualification</class>
+		<class>modelo.HcServiceRState</class>
+		<class>modelo.HcServiceRStatePK</class>
+		<class>modelo.HcServiceRequestTran</class>
+		<class>modelo.HcServiceRequest</class>
+		<class>modelo.HcServiceState</class>
+		<class>modelo.HcServiceStatePK</class>
+		<class>modelo.HcServiceTransRState</class>
+		<class>modelo.HcServiceTransRStatePK</class>
+		<class>modelo.HcServiceTransState</class>
+		<class>modelo.HcServiceTransStatePK</class>
+		<class>modelo.HcService</class>
+		<class>modelo.HcState</class>
+		<class>modelo.HcTransportProvider</class>
+		<class>modelo.HcTransportProviderPK</class>
+		<class>modelo.HcTransportService</class>
+		<class>modelo.HcUserChatroom</class>
+		<class>modelo.HcUserChatroomPK</class>
+		<class>modelo.HcUserState</class>
+		<class>modelo.HcUserStatePK</class>
+		<class>modelo.HcUser</class>
+		<class>modelo.HcVehicle</class>
+		
+	</persistence-unit>
+</persistence>
