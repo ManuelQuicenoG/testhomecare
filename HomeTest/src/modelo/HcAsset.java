@@ -17,7 +17,7 @@ public class HcAsset implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_ASSETS_ASSETID_GENERATOR", sequenceName="HC_ASSETS_SEQ")
+	@SequenceGenerator(name="HC_ASSETS_ASSETID_GENERATOR", sequenceName="HC_ASSETS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_ASSETS_ASSETID_GENERATOR")
 	@Column(name="asset_id")
 	private Integer assetId;

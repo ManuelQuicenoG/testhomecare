@@ -16,7 +16,7 @@ public class HcChatroom implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_CHATROOMS_CHATRID_GENERATOR", sequenceName="HC_CHATROOMS_SEQ")
+	@SequenceGenerator(name="HC_CHATROOMS_CHATRID_GENERATOR", sequenceName="HC_CHATROOMS_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_CHATROOMS_CHATRID_GENERATOR")
 	@Column(name="chat_r_id")
 	private String chatRId;

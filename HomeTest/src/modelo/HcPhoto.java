@@ -15,7 +15,7 @@ public class HcPhoto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_PHOTOS_PHOTOID_GENERATOR", sequenceName="HC_PHOTOS_SEQ")
+	@SequenceGenerator(name="HC_PHOTOS_PHOTOID_GENERATOR", sequenceName="HC_PHOTOS_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_PHOTOS_PHOTOID_GENERATOR")
 	@Column(name="photo_id")
 	private Integer photoId;
