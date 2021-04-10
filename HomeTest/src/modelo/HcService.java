@@ -1,61 +1,61 @@
 package modelo;
 
 import java.io.Serializable;
-import javax.persistence.*;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  * The persistent class for the hc_services database table.
- * 
+ *
  */
 @Entity
-@Table(name="hc_services")
-@NamedQuery(name="HcService.findAll", query="SELECT h FROM HcService h")
+@Table(name = "hc_services")
+@NamedQuery(name = "HcService.findAll", query = "SELECT h FROM HcService h")
 public class HcService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_SERVICES_SERVID_GENERATOR", sequenceName="HC_SERVICES_SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_SERVICES_SERVID_GENERATOR")
-	@Column(name="serv_id")
+	@SequenceGenerator(name = "HC_SERVICES_SERVID_GENERATOR", sequenceName = "HC_SERVICES_SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICES_SERVID_GENERATOR")
+	@Column(name = "serv_id")
 	private Integer servId;
 
-	//bi-directional many-to-one association to HcServicePoll
-	@OneToMany(mappedBy="hcService", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to HcServicePoll
+	@OneToMany(mappedBy = "hcService", fetch = FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServicePoll> hcServicePolls;
 
-	//bi-directional many-to-one association to HcServiceState
-	@OneToMany(mappedBy="hcService", fetch=FetchType.EAGER)
+	// bi-directional many-to-one association to HcServiceState
+	@OneToMany(mappedBy = "hcService", fetch = FetchType.EAGER)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceState> hcServiceStates;
 
-	//bi-directional many-to-one association to HcEmployee
+	// bi-directional many-to-one association to HcEmployee
 	@ManyToOne
-	@JoinColumn(name="hc_employees_user_id")
+	@JoinColumn(name = "hc_employees_user_id")
 	private HcEmployee hcEmployee;
 
-	//bi-directional many-to-one association to HcServiceRequest
+	// bi-directional many-to-one association to HcServiceRequest
 	@ManyToOne
-	@JoinColumn(name="hc_service_requests_service_r_id")
+	@JoinColumn(name = "hc_service_requests_service_r_id")
 	private HcServiceRequest hcServiceRequest;
 
 	public HcService() {
-	}
-
-	public Integer getServId() {
-		return this.servId;
-	}
-
-	public void setServId(Integer servId) {
-		this.servId = servId;
-	}
-
-	public Set<HcServicePoll> getHcServicePolls() {
-		return this.hcServicePolls;
-	}
-
-	public void setHcServicePolls(Set<HcServicePoll> hcServicePolls) {
-		this.hcServicePolls = hcServicePolls;
 	}
 
 	public HcServicePoll addHcServicePoll(HcServicePoll hcServicePoll) {
@@ -65,26 +65,38 @@ public class HcService implements Serializable {
 		return hcServicePoll;
 	}
 
-	public HcServicePoll removeHcServicePoll(HcServicePoll hcServicePoll) {
-		getHcServicePolls().remove(hcServicePoll);
-		hcServicePoll.setHcService(null);
+	public HcServiceState addHcServiceState(HcServiceState hcServiceState) {
+		getHcServiceStates().add(hcServiceState);
+		hcServiceState.setHcService(this);
 
-		return hcServicePoll;
+		return hcServiceState;
+	}
+
+	public HcEmployee getHcEmployee() {
+		return this.hcEmployee;
+	}
+
+	public Set<HcServicePoll> getHcServicePolls() {
+		return this.hcServicePolls;
+	}
+
+	public HcServiceRequest getHcServiceRequest() {
+		return this.hcServiceRequest;
 	}
 
 	public Set<HcServiceState> getHcServiceStates() {
 		return this.hcServiceStates;
 	}
 
-	public void setHcServiceStates(Set<HcServiceState> hcServiceStates) {
-		this.hcServiceStates = hcServiceStates;
+	public Integer getServId() {
+		return this.servId;
 	}
 
-	public HcServiceState addHcServiceState(HcServiceState hcServiceState) {
-		getHcServiceStates().add(hcServiceState);
-		hcServiceState.setHcService(this);
+	public HcServicePoll removeHcServicePoll(HcServicePoll hcServicePoll) {
+		getHcServicePolls().remove(hcServicePoll);
+		hcServicePoll.setHcService(null);
 
-		return hcServiceState;
+		return hcServicePoll;
 	}
 
 	public HcServiceState removeHcServiceState(HcServiceState hcServiceState) {
@@ -94,20 +106,24 @@ public class HcService implements Serializable {
 		return hcServiceState;
 	}
 
-	public HcEmployee getHcEmployee() {
-		return this.hcEmployee;
-	}
-
 	public void setHcEmployee(HcEmployee hcEmployee) {
 		this.hcEmployee = hcEmployee;
 	}
 
-	public HcServiceRequest getHcServiceRequest() {
-		return this.hcServiceRequest;
+	public void setHcServicePolls(Set<HcServicePoll> hcServicePolls) {
+		this.hcServicePolls = hcServicePolls;
 	}
 
 	public void setHcServiceRequest(HcServiceRequest hcServiceRequest) {
 		this.hcServiceRequest = hcServiceRequest;
+	}
+
+	public void setHcServiceStates(Set<HcServiceState> hcServiceStates) {
+		this.hcServiceStates = hcServiceStates;
+	}
+
+	public void setServId(Integer servId) {
+		this.servId = servId;
 	}
 
 }
