@@ -33,7 +33,7 @@ public class HcUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_USERS_USERID_GENERATOR", sequenceName = "HC_USERS_SEQ")
+	@SequenceGenerator(name = "HC_USERS_USERID_GENERATOR", sequenceName = "HC_USERS_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_USERS_USERID_GENERATOR")
 	@Column(name = "user_id")
 	private Integer userId;

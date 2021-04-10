@@ -32,7 +32,7 @@ public class HcProperty implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_PROPERTIES_PROPERTYID_GENERATOR", sequenceName = "HC_PROPERTIES_SEQ")
+	@SequenceGenerator(name = "HC_PROPERTIES_PROPERTYID_GENERATOR", sequenceName = "HC_PROPERTIES_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_PROPERTIES_PROPERTYID_GENERATOR")
 	@Column(name = "property_id")
 	private Integer propertyId;

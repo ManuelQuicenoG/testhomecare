@@ -30,7 +30,7 @@ public class HcService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_SERVICES_SERVID_GENERATOR", sequenceName = "HC_SERVICES_SEQ")
+	@SequenceGenerator(name = "HC_SERVICES_SERVID_GENERATOR", sequenceName = "HC_SERVICES_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICES_SERVID_GENERATOR")
 	@Column(name = "serv_id")
 	private Integer servId;

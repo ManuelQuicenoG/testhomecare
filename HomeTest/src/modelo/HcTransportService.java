@@ -31,7 +31,7 @@ public class HcTransportService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR", sequenceName = "HC_TRANSPORT_SERVICES_SEQ")
+	@SequenceGenerator(name = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR", sequenceName = "HC_TRANSPORT_SERVICES_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR")
 	@Column(name = "hc_serv_trasnport_id")
 	private Integer hcServTrasnportId;

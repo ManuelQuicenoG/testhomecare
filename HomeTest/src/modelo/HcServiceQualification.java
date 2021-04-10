@@ -15,7 +15,7 @@ public class HcServiceQualification implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_SERVICE_QUALIFICATIONS_SERVQUALID_GENERATOR", sequenceName="HC_SERVICE_QUALIFICATIONS_SEQ")
+	@SequenceGenerator(name="HC_SERVICE_QUALIFICATIONS_SERVQUALID_GENERATOR", sequenceName="HC_SERVICE_QUALIFICATIONS_SEQ",allocationSize = 1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_SERVICE_QUALIFICATIONS_SERVQUALID_GENERATOR")
 	@Column(name="serv_qual_id")
 	private long servQualId;
