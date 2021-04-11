@@ -43,6 +43,14 @@ public class HcServiceState implements Serializable {
 	public HcServiceState() {
 	}
 
+	public LocalDate getDateEnd() {
+		return this.dateEnd;
+	}
+
+	public LocalDate getDateStart() {
+		return this.dateStart;
+	}
+
 	public HcService getHcService() {
 		return this.hcService;
 	}
@@ -53,14 +61,6 @@ public class HcServiceState implements Serializable {
 
 	public HcServiceStatePK getId() {
 		return this.id;
-	}
-
-	public LocalDate getLocalDateEnd() {
-		return this.dateEnd;
-	}
-
-	public LocalDate getLocalDateStart() {
-		return this.dateStart;
 	}
 
 	public void setDateEnd(LocalDate dateEnd) {

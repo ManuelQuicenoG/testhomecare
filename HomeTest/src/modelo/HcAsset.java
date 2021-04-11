@@ -131,7 +131,7 @@ public class HcAsset implements Serializable {
 		return this.purchasePrice;
 	}
 
-	public LocalDate getwarrantylDate() {
+	public LocalDate getWarrantylDate() {
 		return this.warrantylDate;
 	}
 
