@@ -12,9 +12,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_transport_providers database table.
  *
@@ -34,17 +31,15 @@ public class HcTransportProvider implements Serializable {
 
 	// bi-directional many-to-one association to HcUser
 	@ManyToOne
-	@JoinColumn(name="hc_users_user_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_users_user_id", insertable = false, updatable = false)
 	private HcUser hcUser;
 
 	// bi-directional many-to-one association to HcTransportService
 	@OneToMany(mappedBy = "hcTransportProvider", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcTransportService> hcTransportServices;
 
 	// bi-directional many-to-one association to HcVehicle
 	@OneToMany(mappedBy = "hcTransportProvider", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcVehicle> hcVehicles;
 
 	public HcTransportProvider() {

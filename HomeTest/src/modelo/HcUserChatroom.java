@@ -12,9 +12,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_user_chatrooms database table.
  *
@@ -30,7 +27,6 @@ public class HcUserChatroom implements Serializable {
 
 	// bi-directional many-to-one association to HcMessage
 	@OneToMany(mappedBy = "hcUserChatroom", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcMessage> hcMessages;
 
 	@ManyToOne

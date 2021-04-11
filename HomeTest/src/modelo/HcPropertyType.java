@@ -11,9 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_property_types database table.
  *
@@ -52,7 +49,6 @@ public class HcPropertyType implements Serializable {
 
 	// bi-directional many-to-one association to HcProperty
 	@OneToMany(mappedBy = "hcPropertyType", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcProperty> hcProperties;
 
 	public HcPropertyType() {

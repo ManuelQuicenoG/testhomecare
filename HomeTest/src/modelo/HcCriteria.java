@@ -13,9 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_criteria database table.
  *
@@ -43,7 +40,6 @@ public class HcCriteria implements Serializable {
 
 	// bi-directional many-to-one association to HcServiceQualification
 	@OneToMany(mappedBy = "hcCriteria", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceQualification> hcServiceQualifications;
 
 	public HcCriteria() {

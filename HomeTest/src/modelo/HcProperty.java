@@ -18,9 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_properties database table.
  *
@@ -32,7 +29,7 @@ public class HcProperty implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_PROPERTIES_PROPERTYID_GENERATOR", sequenceName = "HC_PROPERTIES_SEQ",allocationSize = 1)
+	@SequenceGenerator(name = "HC_PROPERTIES_PROPERTYID_GENERATOR", sequenceName = "HC_PROPERTIES_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_PROPERTIES_PROPERTYID_GENERATOR")
 	@Column(name = "property_id")
 	private Integer propertyId;
@@ -67,17 +64,14 @@ public class HcProperty implements Serializable {
 
 	// bi-directional many-to-one association to HcPropertyState
 	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcPropertyState> hcPropertyStates;
 
 	// bi-directional many-to-one association to HcServiceRequest
 	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceRequest> hcServiceRequests;
 
 	// bi-directional many-to-one association to HcAsset
 	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcAsset> hcAssets;
 
 	public HcProperty() {

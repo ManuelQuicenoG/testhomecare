@@ -24,20 +24,20 @@ public class HcServiceState implements Serializable {
 	@EmbeddedId
 	private HcServiceStatePK id;
 
-	@Column(name="date_end")
+	@Column(name = "date_end")
 	private LocalDate dateEnd;
 
-	@Column(name="date_start")
+	@Column(name = "date_start")
 	private LocalDate dateStart;
 
 	// bi-directional many-to-one association to HcService
 	@ManyToOne
-	@JoinColumn(name="hc_services_serv_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_services_serv_id", insertable = false, updatable = false)
 	private HcService hcService;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id", insertable = false, updatable = false)
 	private HcState hcState;
 
 	public HcServiceState() {
@@ -63,6 +63,14 @@ public class HcServiceState implements Serializable {
 		return this.dateStart;
 	}
 
+	public void setDateEnd(LocalDate dateEnd) {
+		this.dateEnd = dateEnd;
+	}
+
+	public void setDateStart(LocalDate dateStart) {
+		this.dateStart = dateStart;
+	}
+
 	public void setHcService(HcService hcService) {
 		this.hcService = hcService;
 	}
@@ -73,14 +81,6 @@ public class HcServiceState implements Serializable {
 
 	public void setId(HcServiceStatePK id) {
 		this.id = id;
-	}
-
-	public void setLocalDateEnd(LocalDate dateEnd) {
-		this.dateEnd = dateEnd;
-	}
-
-	public void setLocalDateStart(LocalDate dateStart) {
-		this.dateStart = dateStart;
 	}
 
 }

@@ -13,9 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_cities database table.
  *
@@ -39,7 +36,6 @@ public class HcCity implements Serializable {
 
 	// bi-directional many-to-one association to HcNeighborhood
 	@OneToMany(mappedBy = "hcCity", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcNeighborhood> hcNeighborhoods;
 
 	public HcCity() {

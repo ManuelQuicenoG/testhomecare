@@ -15,9 +15,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_service_request_trans database table.
  *
@@ -29,7 +26,7 @@ public class HcServiceRequestTran implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_SERVICE_REQUEST_TRANS_HCSERVRTRANSID_GENERATOR", sequenceName = "HC_SERVICE_REQUEST_TRANS_SEQ",allocationSize = 1)
+	@SequenceGenerator(name = "HC_SERVICE_REQUEST_TRANS_HCSERVRTRANSID_GENERATOR", sequenceName = "HC_SERVICE_REQUEST_TRANS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICE_REQUEST_TRANS_HCSERVRTRANSID_GENERATOR")
 	@Column(name = "hc_serv_r_trans_id")
 	private Integer hcServRTransId;
@@ -54,12 +51,10 @@ public class HcServiceRequestTran implements Serializable {
 
 	// bi-directional many-to-one association to HcServiceTransRState
 	@OneToMany(mappedBy = "hcServiceRequestTran", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceTransRState> hcServiceTransRStates;
 
 	// bi-directional many-to-one association to HcTransportService
 	@OneToMany(mappedBy = "hcServiceRequestTran", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcTransportService> hcTransportServices;
 
 	public HcServiceRequestTran() {

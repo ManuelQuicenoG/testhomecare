@@ -1,8 +1,8 @@
 package modelo;
 
 import java.io.Serializable;
-import java.time.LocalTime;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -18,9 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_service_requests database table.
  *
@@ -32,25 +29,24 @@ public class HcServiceRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_SERVICE_REQUESTS_SERVICERID_GENERATOR", sequenceName = "HC_SERVICE_REQUESTS_SEQ",allocationSize = 1)
+	@SequenceGenerator(name = "HC_SERVICE_REQUESTS_SERVICERID_GENERATOR", sequenceName = "HC_SERVICE_REQUESTS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICE_REQUESTS_SERVICERID_GENERATOR")
 	@Column(name = "service_r_id")
 	private Integer serviceRId;
 
-	@Column(name="beginning_time")
+	@Column(name = "beginning_time")
 	private LocalTime beginningTime;
 
 	private double duration;
 
-	@Column(name="request_date")
-	private LocalDate requestLocalDate;
+	@Column(name = "request_date")
+	private LocalDate requestDate;
 
 	@Column(name = "service_value")
 	private double serviceValue;
 
 	// bi-directional many-to-one association to HcServiceRState
 	@OneToMany(mappedBy = "hcServiceRequest", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceRState> hcServiceRStates;
 
 	// bi-directional many-to-one association to HcProperty
@@ -60,7 +56,6 @@ public class HcServiceRequest implements Serializable {
 
 	// bi-directional many-to-one association to HcService
 	@OneToMany(mappedBy = "hcServiceRequest", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcService> hcServices;
 
 	public HcServiceRequest() {
@@ -84,10 +79,6 @@ public class HcServiceRequest implements Serializable {
 		return this.beginningTime;
 	}
 
-	public void setBeginningTime(LocalTime beginningTime) {
-		this.beginningTime = beginningTime;
-	}
-
 	public double getDuration() {
 		return this.duration;
 	}
@@ -104,8 +95,8 @@ public class HcServiceRequest implements Serializable {
 		return this.hcServices;
 	}
 
-	public LocalDate getRequestLocalDate() {
-		return this.requestLocalDate;
+	public LocalDate getRequestDate() {
+		return this.requestDate;
 	}
 
 	public Integer getServiceRId() {
@@ -130,6 +121,10 @@ public class HcServiceRequest implements Serializable {
 		return hcServiceRState;
 	}
 
+	public void setBeginningTime(LocalTime beginningTime) {
+		this.beginningTime = beginningTime;
+	}
+
 	public void setDuration(double duration) {
 		this.duration = duration;
 	}
@@ -146,8 +141,8 @@ public class HcServiceRequest implements Serializable {
 		this.hcServices = hcServices;
 	}
 
-	public void setRequestLocalDate(LocalDate requestLocalDate) {
-		this.requestLocalDate = requestLocalDate;
+	public void setRequestDate(LocalDate requestDate) {
+		this.requestDate = requestDate;
 	}
 
 	public void setServiceRId(Integer serviceRId) {

@@ -12,9 +12,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_poll_type database table.
  *
@@ -29,10 +26,10 @@ public class HcPollType implements Serializable {
 	@Column(name = "poll_type_id")
 	private Integer pollTypeId;
 
-	@Column(name="date_creation")
+	@Column(name = "date_creation")
 	private LocalDate dateCreation;
 
-	@Column(name="date_expiry")
+	@Column(name = "date_expiry")
 	private LocalDate dateExpiry;
 
 	private String origin;
@@ -41,7 +38,6 @@ public class HcPollType implements Serializable {
 
 	// bi-directional many-to-one association to HcCriteria
 	@OneToMany(mappedBy = "hcPollType", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcCriteria> hcCriterias;
 
 	// bi-directional many-to-one association to HcServicePoll
@@ -65,20 +61,20 @@ public class HcPollType implements Serializable {
 		return hcServicePoll;
 	}
 
+	public LocalDate getDateCreation() {
+		return this.dateCreation;
+	}
+
+	public LocalDate getDateExpiry() {
+		return this.dateExpiry;
+	}
+
 	public Set<HcCriteria> getHcCriterias() {
 		return this.hcCriterias;
 	}
 
 	public Set<HcServicePoll> getHcServicePolls() {
 		return this.hcServicePolls;
-	}
-
-	public LocalDate getLocalDateCreation() {
-		return this.dateCreation;
-	}
-
-	public LocalDate getLocalDateExpiry() {
-		return this.dateExpiry;
 	}
 
 	public String getOrigin() {
@@ -107,20 +103,20 @@ public class HcPollType implements Serializable {
 		return hcServicePoll;
 	}
 
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
+	}
+
+	public void setDateExpiry(LocalDate dateExpiry) {
+		this.dateExpiry = dateExpiry;
+	}
+
 	public void setHcCriterias(Set<HcCriteria> hcCriterias) {
 		this.hcCriterias = hcCriterias;
 	}
 
 	public void setHcServicePolls(Set<HcServicePoll> hcServicePolls) {
 		this.hcServicePolls = hcServicePolls;
-	}
-
-	public void setLocalDateCreation(LocalDate dateCreation) {
-		this.dateCreation = dateCreation;
-	}
-
-	public void setLocalDateExpiry(LocalDate dateExpiry) {
-		this.dateExpiry = dateExpiry;
 	}
 
 	public void setOrigin(String origin) {

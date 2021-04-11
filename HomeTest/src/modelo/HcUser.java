@@ -19,9 +19,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_users database table.
  *
@@ -33,7 +30,7 @@ public class HcUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_USERS_USERID_GENERATOR", sequenceName = "HC_USERS_SEQ",allocationSize = 1)
+	@SequenceGenerator(name = "HC_USERS_USERID_GENERATOR", sequenceName = "HC_USERS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_USERS_USERID_GENERATOR")
 	@Column(name = "user_id")
 	private Integer userId;
@@ -62,7 +59,6 @@ public class HcUser implements Serializable {
 
 	// bi-directional many-to-one association to HcUserState
 	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcUserState> hcUserStates;
 
 	// bi-directional many-to-many association to HcChatroom
@@ -84,12 +80,10 @@ public class HcUser implements Serializable {
 
 	// bi-directional many-to-one association to HcNew
 	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcNew> hcNews;
 
 	// bi-directional many-to-one association to HcTransportProvider
 	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcTransportProvider> hcTransportProviders;
 
 	public HcUser() {

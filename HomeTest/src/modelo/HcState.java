@@ -11,9 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_states database table.
  *
@@ -34,42 +31,34 @@ public class HcState implements Serializable {
 
 	// bi-directional many-to-one association to HcPropertyState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcPropertyState> hcPropertyStates;
 
 	// bi-directional many-to-one association to HcServiceRState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceRState> hcServiceRStates;
 
 	// bi-directional many-to-one association to HcServiceState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceState> hcServiceStates;
 
 	// bi-directional many-to-one association to HcUserState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcUserState> hcUserStates;
 
 	// bi-directional many-to-one association to HcAssetState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcAssetState> hcAssetStates;
 
 	// bi-directional many-to-one association to HcNewState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcNewState> hcNewStates;
 
 	// bi-directional many-to-one association to HcServiceTransRState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceTransRState> hcServiceTransRStates;
 
 	// bi-directional many-to-one association to HcServiceTransState
 	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceTransState> hcServiceTransStates;
 
 	public HcState() {

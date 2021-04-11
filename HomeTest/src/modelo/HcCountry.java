@@ -11,9 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_countries database table.
  *
@@ -32,7 +29,6 @@ public class HcCountry implements Serializable {
 
 	// bi-directional many-to-one association to HcDepartment
 	@OneToMany(mappedBy = "hcCountry", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcDepartment> hcDepartments;
 
 	public HcCountry() {

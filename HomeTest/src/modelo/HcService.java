@@ -16,9 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_services database table.
  *
@@ -30,19 +27,17 @@ public class HcService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_SERVICES_SERVID_GENERATOR", sequenceName = "HC_SERVICES_SEQ",allocationSize = 1)
+	@SequenceGenerator(name = "HC_SERVICES_SERVID_GENERATOR", sequenceName = "HC_SERVICES_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICES_SERVID_GENERATOR")
 	@Column(name = "serv_id")
 	private Integer servId;
 
 	// bi-directional many-to-one association to HcServicePoll
 	@OneToMany(mappedBy = "hcService", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServicePoll> hcServicePolls;
 
 	// bi-directional many-to-one association to HcServiceState
 	@OneToMany(mappedBy = "hcService", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceState> hcServiceStates;
 
 	// bi-directional many-to-one association to HcEmployee

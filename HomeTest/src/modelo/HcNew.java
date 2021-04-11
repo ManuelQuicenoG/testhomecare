@@ -3,8 +3,6 @@ package modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
-
-import javax.persistence.*;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -34,22 +32,21 @@ public class HcNew implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_NEWS_NEWID_GENERATOR", sequenceName="HC_NEWS_SEQ",allocationSize = 1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_NEWS_NEWID_GENERATOR")
-	@Column(name="new_id")
+	@SequenceGenerator(name = "HC_NEWS_NEWID_GENERATOR", sequenceName = "HC_NEWS_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_NEWS_NEWID_GENERATOR")
+	@Column(name = "new_id")
 	private Integer newId;
 
-	@Column(name="actual_date")
-	private LocalDate actualLocalDate;
+	@Column(name = "actual_date")
+	private LocalDate actualDate;
 
-	@Column(name="actual_time")
+	@Column(name = "actual_time")
 	private LocalTime actualTime;
 
 	private String description;
 
 	// bi-directional many-to-one association to HcNewState
 	@OneToMany(mappedBy = "hcNew", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcNewState> hcNewStates;
 
 	// bi-directional many-to-one association to HcAsset
@@ -100,16 +97,12 @@ public class HcNew implements Serializable {
 		return hcPhoto;
 	}
 
-	public LocalDate getActualLocalDate() {
-		return this.actualLocalDate;
+	public LocalDate getActualDate() {
+		return this.actualDate;
 	}
 
 	public LocalTime getActualTime() {
 		return this.actualTime;
-	}
-
-	public void setActualTime(LocalTime actualTime) {
-		this.actualTime = actualTime;
 	}
 
 	public String getDescription() {
@@ -165,8 +158,12 @@ public class HcNew implements Serializable {
 		return hcPhoto;
 	}
 
-	public void setActualLocalDate(LocalDate actualLocalDate) {
-		this.actualLocalDate = actualLocalDate;
+	public void setActualDate(LocalDate actualDate) {
+		this.actualDate = actualDate;
+	}
+
+	public void setActualTime(LocalTime actualTime) {
+		this.actualTime = actualTime;
 	}
 
 	public void setDescription(String description) {

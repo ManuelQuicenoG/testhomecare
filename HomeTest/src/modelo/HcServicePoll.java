@@ -14,9 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_service_poll database table.
  *
@@ -43,17 +40,16 @@ public class HcServicePoll implements Serializable {
 
 	// bi-directional many-to-one association to HcPollType
 	@ManyToOne
-	@JoinColumn(name="hc_poll_type_poll_type_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_poll_type_poll_type_id", insertable = false, updatable = false)
 	private HcPollType hcPollType;
 
 	// bi-directional many-to-one association to HcService
 	@ManyToOne
-	@JoinColumn(name="hc_services_serv_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_services_serv_id", insertable = false, updatable = false)
 	private HcService hcService;
 
 	// bi-directional many-to-one association to HcServiceQualification
 	@OneToMany(mappedBy = "hcServicePoll", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceQualification> hcServiceQualifications;
 
 	public HcServicePoll() {

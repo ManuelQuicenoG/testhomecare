@@ -2,9 +2,6 @@ package modelo;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-
-import javax.persistence.*;
-
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -20,9 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_assets database table.
  *
@@ -34,9 +28,9 @@ public class HcAsset implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="HC_ASSETS_ASSETID_GENERATOR", sequenceName="HC_ASSETS_SEQ", allocationSize = 1)
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="HC_ASSETS_ASSETID_GENERATOR")
-	@Column(name="asset_id")
+	@SequenceGenerator(name = "HC_ASSETS_ASSETID_GENERATOR", sequenceName = "HC_ASSETS_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_ASSETS_ASSETID_GENERATOR")
+	@Column(name = "asset_id")
 	private Integer assetId;
 
 	@Column(name = "alphanumeric_id")
@@ -47,19 +41,17 @@ public class HcAsset implements Serializable {
 	@Column(name = "pruchase_place")
 	private String pruchasePlace;
 
-
-	@Column(name="purchase_date")
-	private LocalDate purchaseLocalDate;
+	@Column(name = "purchase_date")
+	private LocalDate purchaseDate;
 
 	@Column(name = "purchase_price")
 	private double purchasePrice;
 
-	@Column(name="warranty_date")
-	private LocalDate warrantyLocalDate;
+	@Column(name = "warranty_date")
+	private LocalDate warrantylDate;
 
 	// bi-directional many-to-one association to HcAssetState
 	@OneToMany(mappedBy = "hcAsset", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcAssetState> hcAssetStates;
 
 	// bi-directional many-to-one association to HcProperty
@@ -69,12 +61,10 @@ public class HcAsset implements Serializable {
 
 	// bi-directional many-to-one association to HcNew
 	@OneToMany(mappedBy = "hcAsset", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcNew> hcNews;
 
 	// bi-directional many-to-one association to HcPhoto
 	@OneToMany(mappedBy = "hcAsset", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcPhoto> hcPhotos;
 
 	public HcAsset() {
@@ -133,16 +123,16 @@ public class HcAsset implements Serializable {
 		return this.pruchasePlace;
 	}
 
-	public LocalDate getPurchaseLocalDate() {
-		return this.purchaseLocalDate;
+	public LocalDate getPurchaseDate() {
+		return this.purchaseDate;
 	}
 
 	public double getPurchasePrice() {
 		return this.purchasePrice;
 	}
 
-	public LocalDate getWarrantyLocalDate() {
-		return this.warrantyLocalDate;
+	public LocalDate getwarrantylDate() {
+		return this.warrantylDate;
 	}
 
 	public HcAssetState removeHcAssetState(HcAssetState hcAssetState) {
@@ -198,16 +188,16 @@ public class HcAsset implements Serializable {
 		this.pruchasePlace = pruchasePlace;
 	}
 
-	public void setPurchaseLocalDate(LocalDate purchaseLocalDate) {
-		this.purchaseLocalDate = purchaseLocalDate;
+	public void setPurchaseDate(LocalDate purchaseDate) {
+		this.purchaseDate = purchaseDate;
 	}
 
 	public void setPurchasePrice(double purchasePrice) {
 		this.purchasePrice = purchasePrice;
 	}
 
-	public void setWarrantyLocalDate(LocalDate warrantyLocalDate) {
-		this.warrantyLocalDate = warrantyLocalDate;
+	public void setWarrantylDate(LocalDate warrantylDate) {
+		this.warrantylDate = warrantylDate;
 	}
 
 }

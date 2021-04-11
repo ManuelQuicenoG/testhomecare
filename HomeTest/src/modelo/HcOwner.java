@@ -13,9 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_owners database table.
  *
@@ -37,7 +34,6 @@ public class HcOwner implements Serializable {
 
 	// bi-directional many-to-many association to HcProperty
 	@ManyToMany(mappedBy = "hcOwners", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcProperty> hcProperties;
 
 	public HcOwner() {

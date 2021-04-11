@@ -3,8 +3,6 @@ package modelo;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.*;
-
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -26,43 +24,47 @@ public class HcAssetState implements Serializable {
 	@EmbeddedId
 	private HcAssetStatePK id;
 
-	@Column(name="date_end")
+	@Column(name = "date_end")
 	private LocalDate dateEnd;
 
-	@Column(name="date_start")
+	@Column(name = "date_start")
 	private LocalDate dateStart;
 
 	// bi-directional many-to-one association to HcAsset
 	@ManyToOne
-	@JoinColumn(name="hc_assets_asset_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_assets_asset_id", insertable = false, updatable = false)
 	private HcAsset hcAsset;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id", insertable = false, updatable = false)
 	private HcState hcState;
 
 	public HcAssetState() {
+	}
+
+	public LocalDate getDateEnd() {
+		return this.dateEnd;
+	}
+
+	public LocalDate getDateStart() {
+		return this.dateStart;
 	}
 
 	public HcAsset getHcAsset() {
 		return this.hcAsset;
 	}
 
-	public HcState getHcState() {
-		return this.hcState;
-	}
-
 	public HcAssetStatePK getId() {
 		return this.id;
 	}
 
-	public LocalDate getLocalDateEnd() {
-		return this.dateEnd;
+	public void setDateEnd(LocalDate dateEnd) {
+		this.dateEnd = dateEnd;
 	}
 
-	public LocalDate getLocalDateStart() {
-		return this.dateStart;
+	public void setDateStart(LocalDate dateStart) {
+		this.dateStart = dateStart;
 	}
 
 	public void setHcAsset(HcAsset hcAsset) {
@@ -75,14 +77,6 @@ public class HcAssetState implements Serializable {
 
 	public void setId(HcAssetStatePK id) {
 		this.id = id;
-	}
-
-	public void setLocalDateEnd(LocalDate dateEnd) {
-		this.dateEnd = dateEnd;
-	}
-
-	public void setLocalDateStart(LocalDate dateStart) {
-		this.dateStart = dateStart;
 	}
 
 }

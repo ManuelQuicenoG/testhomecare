@@ -24,23 +24,31 @@ public class HcNewState implements Serializable {
 	@EmbeddedId
 	private HcNewStatePK id;
 
-	@Column(name="date_end")
+	@Column(name = "date_end")
 	private LocalDate dateEnd;
 
-	@Column(name="date_start")
+	@Column(name = "date_start")
 	private LocalDate dateStart;
 
 	// bi-directional many-to-one association to HcNew
 	@ManyToOne
-	@JoinColumn(name="hc_news_new_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_news_new_id", insertable = false, updatable = false)
 	private HcNew hcNew;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id", insertable = false, updatable = false)
 	private HcState hcState;
 
 	public HcNewState() {
+	}
+
+	public LocalDate getDateEnd() {
+		return this.dateEnd;
+	}
+
+	public LocalDate getDateStart() {
+		return this.dateStart;
 	}
 
 	public HcNew getHcNew() {
@@ -55,12 +63,12 @@ public class HcNewState implements Serializable {
 		return this.id;
 	}
 
-	public LocalDate getLocalDateEnd() {
-		return this.dateEnd;
+	public void setDateEnd(LocalDate dateEnd) {
+		this.dateEnd = dateEnd;
 	}
 
-	public LocalDate getLocalDateStart() {
-		return this.dateStart;
+	public void setDateStart(LocalDate dateStart) {
+		this.dateStart = dateStart;
 	}
 
 	public void setHcNew(HcNew hcNew) {
@@ -73,14 +81,6 @@ public class HcNewState implements Serializable {
 
 	public void setId(HcNewStatePK id) {
 		this.id = id;
-	}
-
-	public void setLocalDateEnd(LocalDate dateEnd) {
-		this.dateEnd = dateEnd;
-	}
-
-	public void setLocalDateStart(LocalDate dateStart) {
-		this.dateStart = dateStart;
 	}
 
 }

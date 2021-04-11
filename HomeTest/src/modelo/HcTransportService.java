@@ -17,9 +17,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_transport_services database table.
  *
@@ -31,14 +28,13 @@ public class HcTransportService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR", sequenceName = "HC_TRANSPORT_SERVICES_SEQ",allocationSize = 1)
+	@SequenceGenerator(name = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR", sequenceName = "HC_TRANSPORT_SERVICES_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR")
 	@Column(name = "hc_serv_trasnport_id")
 	private Integer hcServTrasnportId;
 
 	// bi-directional many-to-one association to HcServiceTransState
 	@OneToMany(mappedBy = "hcTransportService", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcServiceTransState> hcServiceTransStates;
 
 	// bi-directional many-to-one association to HcServiceRequestTran
