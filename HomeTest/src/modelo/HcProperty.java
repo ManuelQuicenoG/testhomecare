@@ -45,11 +45,6 @@ public class HcProperty implements Serializable {
 	@Column(name = "total_area")
 	private double totalArea;
 
-	// bi-directional many-to-one association to HcNeighborhood
-	@ManyToOne
-	@JoinColumn(name = "hc_neighborhoods_neighbor_id")
-	private HcNeighborhood hcNeighborhood;
-
 	// bi-directional many-to-many association to HcOwner
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "hc_property_admins", joinColumns = {
@@ -62,6 +57,15 @@ public class HcProperty implements Serializable {
 	@JoinColumn(name = "hc_property_types_prop_type_id")
 	private HcPropertyType hcPropertyType;
 
+	// bi-directional many-to-one association to HcAsset
+	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
+	private Set<HcAsset> hcAssets;
+
+	// bi-directional many-to-one association to HcNeighborhood
+	@ManyToOne
+	@JoinColumn(name = "hc_neighborhoods_neighbor_id")
+	private HcNeighborhood hcNeighborhood;
+
 	// bi-directional many-to-one association to HcPropertyState
 	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
 	private Set<HcPropertyState> hcPropertyStates;
@@ -69,10 +73,6 @@ public class HcProperty implements Serializable {
 	// bi-directional many-to-one association to HcServiceRequest
 	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
 	private Set<HcServiceRequest> hcServiceRequests;
-
-	// bi-directional many-to-one association to HcAsset
-	@OneToMany(mappedBy = "hcProperty", fetch = FetchType.EAGER)
-	private Set<HcAsset> hcAssets;
 
 	public HcProperty() {
 	}

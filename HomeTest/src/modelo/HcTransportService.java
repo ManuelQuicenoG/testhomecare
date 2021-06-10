@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -28,10 +27,14 @@ public class HcTransportService implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR", sequenceName = "HC_TRANSPORT_SERVICES_SEQ", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_TRANSPORT_SERVICES_HCSERVTRASNPORTID_GENERATOR")
-	@Column(name = "hc_serv_trasnport_id")
-	private Integer hcServTrasnportId;
+	@SequenceGenerator(name = "HC_TRANSPORT_SERVICES_HCSERVTRANSPORTID_GENERATOR", sequenceName = "HC_TRASNPORT_SERVICES_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_TRANSPORT_SERVICES_HCSERVTRANSPORTID_GENERATOR")
+	@Column(name = "hc_serv_transport_id")
+	private Integer hcServTransportId;
+
+	// bi-directional many-to-one association to HcServicePollTransport
+	@OneToMany(mappedBy = "hcTransportService", fetch = FetchType.EAGER)
+	private Set<HcServicePollTransport> hcServicePollTransports;
 
 	// bi-directional many-to-one association to HcServiceTransState
 	@OneToMany(mappedBy = "hcTransportService", fetch = FetchType.EAGER)
@@ -44,12 +47,17 @@ public class HcTransportService implements Serializable {
 
 	// bi-directional many-to-one association to HcTransportProvider
 	@ManyToOne
-	@JoinColumns({
-			@JoinColumn(name = "hc_transport_providers_hc_provaider_id", referencedColumnName = "hc_provaider_id"),
-			@JoinColumn(name = "hc_transport_providers_hc_users_user_id", referencedColumnName = "hc_users_user_id") })
+	@JoinColumn(name = "hc_transport_providers_hc_provaider_id")
 	private HcTransportProvider hcTransportProvider;
 
 	public HcTransportService() {
+	}
+
+	public HcServicePollTransport addHcServicePollTransport(HcServicePollTransport hcServicePollTransport) {
+		getHcServicePollTransports().add(hcServicePollTransport);
+		hcServicePollTransport.setHcTransportService(this);
+
+		return hcServicePollTransport;
 	}
 
 	public HcServiceTransState addHcServiceTransState(HcServiceTransState hcServiceTransState) {
@@ -57,6 +65,10 @@ public class HcTransportService implements Serializable {
 		hcServiceTransState.setHcTransportService(this);
 
 		return hcServiceTransState;
+	}
+
+	public Set<HcServicePollTransport> getHcServicePollTransports() {
+		return this.hcServicePollTransports;
 	}
 
 	public HcServiceRequestTran getHcServiceRequestTran() {
@@ -67,12 +79,19 @@ public class HcTransportService implements Serializable {
 		return this.hcServiceTransStates;
 	}
 
-	public Integer getHcServTrasnportId() {
-		return this.hcServTrasnportId;
+	public Integer getHcServTransportId() {
+		return this.hcServTransportId;
 	}
 
 	public HcTransportProvider getHcTransportProvider() {
 		return this.hcTransportProvider;
+	}
+
+	public HcServicePollTransport removeHcServicePollTransport(HcServicePollTransport hcServicePollTransport) {
+		getHcServicePollTransports().remove(hcServicePollTransport);
+		hcServicePollTransport.setHcTransportService(null);
+
+		return hcServicePollTransport;
 	}
 
 	public HcServiceTransState removeHcServiceTransState(HcServiceTransState hcServiceTransState) {
@@ -80,6 +99,10 @@ public class HcTransportService implements Serializable {
 		hcServiceTransState.setHcTransportService(null);
 
 		return hcServiceTransState;
+	}
+
+	public void setHcServicePollTransports(Set<HcServicePollTransport> hcServicePollTransports) {
+		this.hcServicePollTransports = hcServicePollTransports;
 	}
 
 	public void setHcServiceRequestTran(HcServiceRequestTran hcServiceRequestTran) {
@@ -90,8 +113,8 @@ public class HcTransportService implements Serializable {
 		this.hcServiceTransStates = hcServiceTransStates;
 	}
 
-	public void setHcServTrasnportId(Integer hcServTrasnportId) {
-		this.hcServTrasnportId = hcServTrasnportId;
+	public void setHcServTransportId(Integer hcServTransportId) {
+		this.hcServTransportId = hcServTransportId;
 	}
 
 	public void setHcTransportProvider(HcTransportProvider hcTransportProvider) {

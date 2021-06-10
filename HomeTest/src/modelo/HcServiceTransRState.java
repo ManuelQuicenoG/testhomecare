@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.sql.Time;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -24,28 +25,35 @@ public class HcServiceTransRState implements Serializable {
 	@EmbeddedId
 	private HcServiceTransRStatePK id;
 
-	@Column(name = "hc_schedule")
-	private LocalDate hcSchedule;
+	@Column(name = "hc_service_trans_date")
+	private LocalDate hcServiceTransDate;
+
+	@Column(name = "hc_service_trans_hour")
+	private Time hcServiceTransHour;
 
 	// bi-directional many-to-one association to HcServiceRequestTran
 	@ManyToOne
-	@JoinColumn(name="hc_service_request_trans_hc_serv_r_trans_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_service_request_trans_hc_serv_r_trans_id")
 	private HcServiceRequestTran hcServiceRequestTran;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name="hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id")
 	private HcState hcState;
 
 	public HcServiceTransRState() {
 	}
 
-	public LocalDate getHcSchedule() {
-		return this.hcSchedule;
-	}
-
 	public HcServiceRequestTran getHcServiceRequestTran() {
 		return this.hcServiceRequestTran;
+	}
+
+	public LocalDate getHcServiceTransDate() {
+		return this.hcServiceTransDate;
+	}
+
+	public Time getHcServiceTransHour() {
+		return this.hcServiceTransHour;
 	}
 
 	public HcState getHcState() {
@@ -56,12 +64,16 @@ public class HcServiceTransRState implements Serializable {
 		return this.id;
 	}
 
-	public void setHcSchedule(LocalDate hcSchedule) {
-		this.hcSchedule = hcSchedule;
-	}
-
 	public void setHcServiceRequestTran(HcServiceRequestTran hcServiceRequestTran) {
 		this.hcServiceRequestTran = hcServiceRequestTran;
+	}
+
+	public void setHcServiceTransDate(LocalDate hcServiceTransDate) {
+		this.hcServiceTransDate = hcServiceTransDate;
+	}
+
+	public void setHcServiceTransHour(Time hcServiceTransHour) {
+		this.hcServiceTransHour = hcServiceTransHour;
 	}
 
 	public void setHcState(HcState hcState) {

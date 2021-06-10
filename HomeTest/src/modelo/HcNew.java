@@ -18,9 +18,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-
 /**
  * The persistent class for the hc_news database table.
  *
@@ -61,7 +58,6 @@ public class HcNew implements Serializable {
 
 	// bi-directional many-to-one association to HcNew
 	@OneToMany(mappedBy = "hcNew", fetch = FetchType.EAGER)
-	@LazyCollection(LazyCollectionOption.FALSE)
 	private Set<HcNew> hcNews;
 
 	// bi-directional many-to-one association to HcUser

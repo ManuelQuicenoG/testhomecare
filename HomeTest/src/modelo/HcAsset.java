@@ -38,17 +38,17 @@ public class HcAsset implements Serializable {
 
 	private String name;
 
-	@Column(name = "pruchase_place")
-	private String pruchasePlace;
-
 	@Column(name = "purchase_date")
 	private LocalDate purchaseDate;
+
+	@Column(name = "purchase_place")
+	private String purchasePlace;
 
 	@Column(name = "purchase_price")
 	private double purchasePrice;
 
 	@Column(name = "warranty_date")
-	private LocalDate warrantylDate;
+	private LocalDate warrantyDate;
 
 	// bi-directional many-to-one association to HcAssetState
 	@OneToMany(mappedBy = "hcAsset", fetch = FetchType.EAGER)
@@ -119,20 +119,20 @@ public class HcAsset implements Serializable {
 		return this.name;
 	}
 
-	public String getPruchasePlace() {
-		return this.pruchasePlace;
-	}
-
 	public LocalDate getPurchaseDate() {
 		return this.purchaseDate;
+	}
+
+	public String getPurchasePlace() {
+		return this.purchasePlace;
 	}
 
 	public double getPurchasePrice() {
 		return this.purchasePrice;
 	}
 
-	public LocalDate getWarrantylDate() {
-		return this.warrantylDate;
+	public LocalDate getWarrantyDate() {
+		return this.warrantyDate;
 	}
 
 	public HcAssetState removeHcAssetState(HcAssetState hcAssetState) {
@@ -184,20 +184,20 @@ public class HcAsset implements Serializable {
 		this.name = name;
 	}
 
-	public void setPruchasePlace(String pruchasePlace) {
-		this.pruchasePlace = pruchasePlace;
-	}
-
 	public void setPurchaseDate(LocalDate purchaseDate) {
 		this.purchaseDate = purchaseDate;
+	}
+
+	public void setPurchasePlace(String purchasePlace) {
+		this.purchasePlace = purchasePlace;
 	}
 
 	public void setPurchasePrice(double purchasePrice) {
 		this.purchasePrice = purchasePrice;
 	}
 
-	public void setWarrantylDate(LocalDate warrantylDate) {
-		this.warrantylDate = warrantylDate;
+	public void setWarrantyDate(LocalDate warrantyDate) {
+		this.warrantyDate = warrantyDate;
 	}
 
 }

@@ -3,13 +3,17 @@ package modelo;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.EmbeddedId;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -22,8 +26,11 @@ import javax.persistence.Table;
 public class HcTransportProvider implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private HcTransportProviderPK id;
+	@Id
+	@SequenceGenerator(name = "HC_TRANSPORT_PROVIDERS_HCPROVAIDERID_GENERATOR", sequenceName = "HC_TRASNPORT_PROVIDERS_SEQ", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_TRANSPORT_PROVIDERS_HCPROVAIDERID_GENERATOR")
+	@Column(name = "hc_provaider_id")
+	private Integer hcProvaiderId;
 
 	private String story;
 
@@ -31,16 +38,17 @@ public class HcTransportProvider implements Serializable {
 
 	// bi-directional many-to-one association to HcUser
 	@ManyToOne
-	@JoinColumn(name = "hc_users_user_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_users_user_id")
 	private HcUser hcUser;
+
+	// bi-directional many-to-one association to HcVehicle
+	@ManyToOne
+	@JoinColumn(name = "hc_vehicles_hc_vehicle_id")
+	private HcVehicle hcVehicle;
 
 	// bi-directional many-to-one association to HcTransportService
 	@OneToMany(mappedBy = "hcTransportProvider", fetch = FetchType.EAGER)
 	private Set<HcTransportService> hcTransportServices;
-
-	// bi-directional many-to-one association to HcVehicle
-	@OneToMany(mappedBy = "hcTransportProvider", fetch = FetchType.EAGER)
-	private Set<HcVehicle> hcVehicles;
 
 	public HcTransportProvider() {
 	}
@@ -52,11 +60,8 @@ public class HcTransportProvider implements Serializable {
 		return hcTransportService;
 	}
 
-	public HcVehicle addHcVehicle(HcVehicle hcVehicle) {
-		getHcVehicles().add(hcVehicle);
-		hcVehicle.setHcTransportProvider(this);
-
-		return hcVehicle;
+	public Integer getHcProvaiderId() {
+		return this.hcProvaiderId;
 	}
 
 	public Set<HcTransportService> getHcTransportServices() {
@@ -67,12 +72,8 @@ public class HcTransportProvider implements Serializable {
 		return this.hcUser;
 	}
 
-	public Set<HcVehicle> getHcVehicles() {
-		return this.hcVehicles;
-	}
-
-	public HcTransportProviderPK getId() {
-		return this.id;
+	public HcVehicle getHcVehicle() {
+		return this.hcVehicle;
 	}
 
 	public String getStory() {
@@ -90,11 +91,8 @@ public class HcTransportProvider implements Serializable {
 		return hcTransportService;
 	}
 
-	public HcVehicle removeHcVehicle(HcVehicle hcVehicle) {
-		getHcVehicles().remove(hcVehicle);
-		hcVehicle.setHcTransportProvider(null);
-
-		return hcVehicle;
+	public void setHcProvaiderId(Integer hcProvaiderId) {
+		this.hcProvaiderId = hcProvaiderId;
 	}
 
 	public void setHcTransportServices(Set<HcTransportService> hcTransportServices) {
@@ -105,12 +103,8 @@ public class HcTransportProvider implements Serializable {
 		this.hcUser = hcUser;
 	}
 
-	public void setHcVehicles(Set<HcVehicle> hcVehicles) {
-		this.hcVehicles = hcVehicles;
-	}
-
-	public void setId(HcTransportProviderPK id) {
-		this.id = id;
+	public void setHcVehicle(HcVehicle hcVehicle) {
+		this.hcVehicle = hcVehicle;
 	}
 
 	public void setStory(String story) {

@@ -12,9 +12,6 @@ public class HcServiceTransRStatePK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="state_id")
-	private Integer stateId;
-
 	@Column(name="hc_service_request_trans_hc_serv_r_trans_id", insertable=false, updatable=false)
 	private Integer hcServiceRequestTransHcServRTransId;
 
@@ -22,12 +19,6 @@ public class HcServiceTransRStatePK implements Serializable {
 	private Integer hcStatesStateId;
 
 	public HcServiceTransRStatePK() {
-	}
-	public Integer getStateId() {
-		return this.stateId;
-	}
-	public void setStateId(Integer stateId) {
-		this.stateId = stateId;
 	}
 	public Integer getHcServiceRequestTransHcServRTransId() {
 		return this.hcServiceRequestTransHcServRTransId;
@@ -51,15 +42,13 @@ public class HcServiceTransRStatePK implements Serializable {
 		}
 		HcServiceTransRStatePK castOther = (HcServiceTransRStatePK)other;
 		return 
-			this.stateId.equals(castOther.stateId)
-			&& this.hcServiceRequestTransHcServRTransId.equals(castOther.hcServiceRequestTransHcServRTransId)
+			this.hcServiceRequestTransHcServRTransId.equals(castOther.hcServiceRequestTransHcServRTransId)
 			&& this.hcStatesStateId.equals(castOther.hcStatesStateId);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.stateId.hashCode();
 		hash = hash * prime + this.hcServiceRequestTransHcServRTransId.hashCode();
 		hash = hash * prime + this.hcStatesStateId.hashCode();
 		

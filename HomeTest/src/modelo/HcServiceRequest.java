@@ -29,7 +29,7 @@ public class HcServiceRequest implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_SERVICE_REQUESTS_SERVICERID_GENERATOR", sequenceName = "HC_SERVICE_REQUESTS_SEQ", allocationSize = 1)
+	@SequenceGenerator(name = "HC_SERVICE_REQUESTS_SERVICERID_GENERATOR", sequenceName = "HC_SERVICE_REQUEST_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICE_REQUESTS_SERVICERID_GENERATOR")
 	@Column(name = "service_r_id")
 	private Integer serviceRId;

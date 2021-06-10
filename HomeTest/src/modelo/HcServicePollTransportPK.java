@@ -4,27 +4,27 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * The primary key class for the hc_service_trans_states database table.
+ * The primary key class for the hc_service_poll_transport database table.
  * 
  */
 @Embeddable
-public class HcServiceTransStatePK implements Serializable {
+public class HcServicePollTransportPK implements Serializable {
 	//default serial version id, required for serializable classes.
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="hc_states_state_id", insertable=false, updatable=false)
-	private Integer hcStatesStateId;
+	@Column(name="hc_poll_type_transport_poll_type_id", insertable=false, updatable=false)
+	private Integer hcPollTypeTransportPollTypeId;
 
 	@Column(name="hc_transport_services_hc_serv_transport_id", insertable=false, updatable=false)
 	private Integer hcTransportServicesHcServTransportId;
 
-	public HcServiceTransStatePK() {
+	public HcServicePollTransportPK() {
 	}
-	public Integer getHcStatesStateId() {
-		return this.hcStatesStateId;
+	public Integer getHcPollTypeTransportPollTypeId() {
+		return this.hcPollTypeTransportPollTypeId;
 	}
-	public void setHcStatesStateId(Integer hcStatesStateId) {
-		this.hcStatesStateId = hcStatesStateId;
+	public void setHcPollTypeTransportPollTypeId(Integer hcPollTypeTransportPollTypeId) {
+		this.hcPollTypeTransportPollTypeId = hcPollTypeTransportPollTypeId;
 	}
 	public Integer getHcTransportServicesHcServTransportId() {
 		return this.hcTransportServicesHcServTransportId;
@@ -37,19 +37,19 @@ public class HcServiceTransStatePK implements Serializable {
 		if (this == other) {
 			return true;
 		}
-		if (!(other instanceof HcServiceTransStatePK)) {
+		if (!(other instanceof HcServicePollTransportPK)) {
 			return false;
 		}
-		HcServiceTransStatePK castOther = (HcServiceTransStatePK)other;
+		HcServicePollTransportPK castOther = (HcServicePollTransportPK)other;
 		return 
-			this.hcStatesStateId.equals(castOther.hcStatesStateId)
+			this.hcPollTypeTransportPollTypeId.equals(castOther.hcPollTypeTransportPollTypeId)
 			&& this.hcTransportServicesHcServTransportId.equals(castOther.hcTransportServicesHcServTransportId);
 	}
 
 	public int hashCode() {
 		final int prime = 31;
 		int hash = 17;
-		hash = hash * prime + this.hcStatesStateId.hashCode();
+		hash = hash * prime + this.hcPollTypeTransportPollTypeId.hashCode();
 		hash = hash * prime + this.hcTransportServicesHcServTransportId.hashCode();
 		
 		return hash;

@@ -38,7 +38,7 @@ public class HcRole implements Serializable {
 	private Set<HcPermission> hcPermissions;
 
 	// bi-directional many-to-one association to HcUser
-	@OneToMany(mappedBy = "hcRole", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hcRole")
 	private Set<HcUser> hcUsers;
 
 	public HcRole() {

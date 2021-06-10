@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,9 +20,6 @@ import javax.persistence.Table;
 public class HcNewState implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private HcNewStatePK id;
-
 	@Column(name = "date_end")
 	private LocalDate dateEnd;
 
@@ -32,12 +28,12 @@ public class HcNewState implements Serializable {
 
 	// bi-directional many-to-one association to HcNew
 	@ManyToOne
-	@JoinColumn(name = "hc_news_new_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_news_new_id")
 	private HcNew hcNew;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name = "hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id")
 	private HcState hcState;
 
 	public HcNewState() {
@@ -59,10 +55,6 @@ public class HcNewState implements Serializable {
 		return this.hcState;
 	}
 
-	public HcNewStatePK getId() {
-		return this.id;
-	}
-
 	public void setDateEnd(LocalDate dateEnd) {
 		this.dateEnd = dateEnd;
 	}
@@ -77,10 +69,6 @@ public class HcNewState implements Serializable {
 
 	public void setHcState(HcState hcState) {
 		this.hcState = hcState;
-	}
-
-	public void setId(HcNewStatePK id) {
-		this.id = id;
 	}
 
 }

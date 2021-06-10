@@ -57,9 +57,21 @@ public class HcUser implements Serializable {
 	@OneToOne(mappedBy = "hcUser")
 	private HcOwner hcOwner;
 
-	// bi-directional many-to-one association to HcUserState
+	// bi-directional many-to-one association to HcNew
 	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
-	private Set<HcUserState> hcUserStates;
+	private Set<HcNew> hcNews;
+
+	// bi-directional many-to-one association to HcOrder
+	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
+	private Set<HcOrder> hcOrders;
+
+	// bi-directional many-to-one association to HcServiceRequestTran
+	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
+	private Set<HcServiceRequestTran> hcServiceRequestTrans;
+
+	// bi-directional many-to-one association to HcTransportProvider
+	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
+	private Set<HcTransportProvider> hcTransportProviders;
 
 	// bi-directional many-to-many association to HcChatroom
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -67,6 +79,10 @@ public class HcUser implements Serializable {
 			@JoinColumn(name = "hc_users_user_id") }, inverseJoinColumns = {
 					@JoinColumn(name = "hc_chatrooms_chat_r_id") })
 	private Set<HcChatroom> hcChatrooms;
+
+	// bi-directional many-to-one association to HcUserState
+	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
+	private Set<HcUserState> hcUserStates;
 
 	// bi-directional many-to-one association to HcNeighborhood
 	@ManyToOne
@@ -78,14 +94,6 @@ public class HcUser implements Serializable {
 	@JoinColumn(name = "hc_roles_role_id")
 	private HcRole hcRole;
 
-	// bi-directional many-to-one association to HcNew
-	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
-	private Set<HcNew> hcNews;
-
-	// bi-directional many-to-one association to HcTransportProvider
-	@OneToMany(mappedBy = "hcUser", fetch = FetchType.EAGER)
-	private Set<HcTransportProvider> hcTransportProviders;
-
 	public HcUser() {
 	}
 
@@ -94,6 +102,20 @@ public class HcUser implements Serializable {
 		hcNew.setHcUser(this);
 
 		return hcNew;
+	}
+
+	public HcOrder addHcOrder(HcOrder hcOrder) {
+		getHcOrders().add(hcOrder);
+		hcOrder.setHcUser(this);
+
+		return hcOrder;
+	}
+
+	public HcServiceRequestTran addHcServiceRequestTran(HcServiceRequestTran hcServiceRequestTran) {
+		getHcServiceRequestTrans().add(hcServiceRequestTran);
+		hcServiceRequestTran.setHcUser(this);
+
+		return hcServiceRequestTran;
 	}
 
 	public HcTransportProvider addHcTransportProvider(HcTransportProvider hcTransportProvider) {
@@ -142,12 +164,20 @@ public class HcUser implements Serializable {
 		return this.hcNews;
 	}
 
+	public Set<HcOrder> getHcOrders() {
+		return this.hcOrders;
+	}
+
 	public HcOwner getHcOwner() {
 		return this.hcOwner;
 	}
 
 	public HcRole getHcRole() {
 		return this.hcRole;
+	}
+
+	public Set<HcServiceRequestTran> getHcServiceRequestTrans() {
+		return this.hcServiceRequestTrans;
 	}
 
 	public Set<HcTransportProvider> getHcTransportProviders() {
@@ -175,6 +205,20 @@ public class HcUser implements Serializable {
 		hcNew.setHcUser(null);
 
 		return hcNew;
+	}
+
+	public HcOrder removeHcOrder(HcOrder hcOrder) {
+		getHcOrders().remove(hcOrder);
+		hcOrder.setHcUser(null);
+
+		return hcOrder;
+	}
+
+	public HcServiceRequestTran removeHcServiceRequestTran(HcServiceRequestTran hcServiceRequestTran) {
+		getHcServiceRequestTrans().remove(hcServiceRequestTran);
+		hcServiceRequestTran.setHcUser(null);
+
+		return hcServiceRequestTran;
 	}
 
 	public HcTransportProvider removeHcTransportProvider(HcTransportProvider hcTransportProvider) {
@@ -223,12 +267,20 @@ public class HcUser implements Serializable {
 		this.hcNews = hcNews;
 	}
 
+	public void setHcOrders(Set<HcOrder> hcOrders) {
+		this.hcOrders = hcOrders;
+	}
+
 	public void setHcOwner(HcOwner hcOwner) {
 		this.hcOwner = hcOwner;
 	}
 
 	public void setHcRole(HcRole hcRole) {
 		this.hcRole = hcRole;
+	}
+
+	public void setHcServiceRequestTrans(Set<HcServiceRequestTran> hcServiceRequestTrans) {
+		this.hcServiceRequestTrans = hcServiceRequestTrans;
 	}
 
 	public void setHcTransportProviders(Set<HcTransportProvider> hcTransportProviders) {

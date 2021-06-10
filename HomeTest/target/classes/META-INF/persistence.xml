@@ -48,6 +48,13 @@
 		<class>modelo.HcUserStatePK</class>
 		<class>modelo.HcUser</class>
 		<class>modelo.HcVehicle</class>
+		<class>modelo.HcCriteriaTransport</class>
+		<class>modelo.HcOrder</class>
+		<class>modelo.HcPollTypeTransport</class>
+		<class>modelo.HcProduct</class>
+		<class>modelo.HcServicePollTransport</class>
+		<class>modelo.HcServicePollTransportPK</class>
+		<class>modelo.HcServiceQualificationsTransport</class>
 		
 	</persistence-unit>
 </persistence>

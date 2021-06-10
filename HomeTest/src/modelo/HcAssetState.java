@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,9 +20,6 @@ import javax.persistence.Table;
 public class HcAssetState implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@EmbeddedId
-	private HcAssetStatePK id;
-
 	@Column(name = "date_end")
 	private LocalDate dateEnd;
 
@@ -32,12 +28,12 @@ public class HcAssetState implements Serializable {
 
 	// bi-directional many-to-one association to HcAsset
 	@ManyToOne
-	@JoinColumn(name = "hc_assets_asset_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_assets_asset_id")
 	private HcAsset hcAsset;
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name = "hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id")
 	private HcState hcState;
 
 	public HcAssetState() {
@@ -55,8 +51,8 @@ public class HcAssetState implements Serializable {
 		return this.hcAsset;
 	}
 
-	public HcAssetStatePK getId() {
-		return this.id;
+	public HcState getHcState() {
+		return this.hcState;
 	}
 
 	public void setDateEnd(LocalDate dateEnd) {
@@ -73,10 +69,6 @@ public class HcAssetState implements Serializable {
 
 	public void setHcState(HcState hcState) {
 		this.hcState = hcState;
-	}
-
-	public void setId(HcAssetStatePK id) {
-		this.id = id;
 	}
 
 }

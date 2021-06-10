@@ -32,12 +32,12 @@ public class HcUserState implements Serializable {
 
 	// bi-directional many-to-one association to HcState
 	@ManyToOne
-	@JoinColumn(name = "hc_states_state_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_states_state_id")
 	private HcState hcState;
 
 	// bi-directional many-to-one association to HcUser
 	@ManyToOne
-	@JoinColumn(name = "hc_users_user_id", insertable = false, updatable = false)
+	@JoinColumn(name = "hc_users_user_id")
 	private HcUser hcUser;
 
 	public HcUserState() {

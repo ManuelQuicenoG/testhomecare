@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -29,37 +28,37 @@ public class HcState implements Serializable {
 
 	private String name;
 
-	// bi-directional many-to-one association to HcPropertyState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	private Set<HcPropertyState> hcPropertyStates;
-
-	// bi-directional many-to-one association to HcServiceRState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	private Set<HcServiceRState> hcServiceRStates;
-
-	// bi-directional many-to-one association to HcServiceState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	private Set<HcServiceState> hcServiceStates;
-
-	// bi-directional many-to-one association to HcUserState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
-	private Set<HcUserState> hcUserStates;
-
 	// bi-directional many-to-one association to HcAssetState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hcState")
 	private Set<HcAssetState> hcAssetStates;
 
 	// bi-directional many-to-one association to HcNewState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hcState")
 	private Set<HcNewState> hcNewStates;
 
+	// bi-directional many-to-one association to HcPropertyState
+	@OneToMany(mappedBy = "hcState")
+	private Set<HcPropertyState> hcPropertyStates;
+
+	// bi-directional many-to-one association to HcServiceRState
+	@OneToMany(mappedBy = "hcState")
+	private Set<HcServiceRState> hcServiceRStates;
+
+	// bi-directional many-to-one association to HcServiceState
+	@OneToMany(mappedBy = "hcState")
+	private Set<HcServiceState> hcServiceStates;
+
 	// bi-directional many-to-one association to HcServiceTransRState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hcState")
 	private Set<HcServiceTransRState> hcServiceTransRStates;
 
 	// bi-directional many-to-one association to HcServiceTransState
-	@OneToMany(mappedBy = "hcState", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "hcState")
 	private Set<HcServiceTransState> hcServiceTransStates;
+
+	// bi-directional many-to-one association to HcUserState
+	@OneToMany(mappedBy = "hcState")
+	private Set<HcUserState> hcUserStates;
 
 	public HcState() {
 	}

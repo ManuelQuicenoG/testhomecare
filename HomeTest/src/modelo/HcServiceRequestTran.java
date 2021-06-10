@@ -1,7 +1,8 @@
 package modelo;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
@@ -26,7 +29,7 @@ public class HcServiceRequestTran implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name = "HC_SERVICE_REQUEST_TRANS_HCSERVRTRANSID_GENERATOR", sequenceName = "HC_SERVICE_REQUEST_TRANS_SEQ", allocationSize = 1)
+	@SequenceGenerator(name = "HC_SERVICE_REQUEST_TRANS_HCSERVRTRANSID_GENERATOR", sequenceName = "HC_SERVICE_REQUESTS_TRANS_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "HC_SERVICE_REQUEST_TRANS_HCSERVRTRANSID_GENERATOR")
 	@Column(name = "hc_serv_r_trans_id")
 	private Integer hcServRTransId;
@@ -40,14 +43,28 @@ public class HcServiceRequestTran implements Serializable {
 	@Column(name = "hc_origin_place")
 	private String hcOriginPlace;
 
-	@Column(name = "hc_schedule")
-	private Timestamp hcSchedule;
+	@Column(name = "hc_service_date_final")
+	private LocalDate hcServiceDateFinal;
+
+	@Column(name = "hc_service_hour_final")
+	private LocalTime hcServiceHourFinal;
+
+	@Column(name = "hc_service_trans_date")
+	private LocalDate hcServiceTransDate;
+
+	@Column(name = "hc_service_trans_hour")
+	private LocalTime hcServiceTransHour;
 
 	@Column(name = "hc_transport_type")
 	private String hcTransportType;
 
 	@Column(name = "hc_vehicle_type")
 	private String hcVehicleType;
+
+	// bi-directional many-to-one association to HcUser
+	@ManyToOne
+	@JoinColumn(name = "hc_users_user_id")
+	private HcUser hcUser;
 
 	// bi-directional many-to-one association to HcServiceTransRState
 	@OneToMany(mappedBy = "hcServiceRequestTran", fetch = FetchType.EAGER)
@@ -86,8 +103,20 @@ public class HcServiceRequestTran implements Serializable {
 		return this.hcOriginPlace;
 	}
 
-	public Timestamp getHcSchedule() {
-		return this.hcSchedule;
+	public LocalDate getHcServiceDateFinal() {
+		return this.hcServiceDateFinal;
+	}
+
+	public LocalTime getHcServiceHourFinal() {
+		return this.hcServiceHourFinal;
+	}
+
+	public LocalDate getHcServiceTransDate() {
+		return this.hcServiceTransDate;
+	}
+
+	public LocalTime getHcServiceTransHour() {
+		return this.hcServiceTransHour;
 	}
 
 	public Set<HcServiceTransRState> getHcServiceTransRStates() {
@@ -104,6 +133,10 @@ public class HcServiceRequestTran implements Serializable {
 
 	public String getHcTransportType() {
 		return this.hcTransportType;
+	}
+
+	public HcUser getHcUser() {
+		return this.hcUser;
 	}
 
 	public String getHcVehicleType() {
@@ -136,8 +169,20 @@ public class HcServiceRequestTran implements Serializable {
 		this.hcOriginPlace = hcOriginPlace;
 	}
 
-	public void setHcSchedule(Timestamp hcSchedule) {
-		this.hcSchedule = hcSchedule;
+	public void setHcServiceDateFinal(LocalDate hcServiceDateFinal) {
+		this.hcServiceDateFinal = hcServiceDateFinal;
+	}
+
+	public void setHcServiceHourFinal(LocalTime hcServiceHourFinal) {
+		this.hcServiceHourFinal = hcServiceHourFinal;
+	}
+
+	public void setHcServiceTransDate(LocalDate hcServiceTransDate) {
+		this.hcServiceTransDate = hcServiceTransDate;
+	}
+
+	public void setHcServiceTransHour(LocalTime hcServiceTransHour) {
+		this.hcServiceTransHour = hcServiceTransHour;
 	}
 
 	public void setHcServiceTransRStates(Set<HcServiceTransRState> hcServiceTransRStates) {
@@ -154,6 +199,10 @@ public class HcServiceRequestTran implements Serializable {
 
 	public void setHcTransportType(String hcTransportType) {
 		this.hcTransportType = hcTransportType;
+	}
+
+	public void setHcUser(HcUser hcUser) {
+		this.hcUser = hcUser;
 	}
 
 	public void setHcVehicleType(String hcVehicleType) {
